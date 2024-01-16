@@ -1,11 +1,14 @@
 #content {
-  background-color: rgb(182, 182, 182);
+  background-color: rgb(28, 49, 77);
   padding: 10px;
-  font: fantasy;
+  font-family: 'Courier New', Courier, monospace;
+  color: #d2b964;
   border: solid 1px rgb(16, 0, 136);
 }
 
 .minor-section {
   padding: 10px;
   border: solid 1px #c9a01b;
+  background-color: #d2b964;
+  color: rgb(16, 0, 136);
 }

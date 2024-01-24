@@ -29,29 +29,41 @@
 			<center><h2>Experiment 2 - Vector Art, Animation, and Interactivity</h2></center>
 			<div class="minor-section">
 				<h2>Imitate</h2>
-				<p>To develop artistic creativity in coding, it can be helpful to start by studying and learning from existing examples. This might involve reviewing code written by others, analyzing successful techniques, or even copying and modifying code to better understand how it works. By imitating and learning from existing techniques and strategies, we can gain a better understanding of what has been done before and what is possible, and identify opportunities for improvement and innovation.</p>
-				<p>What code did you start with? (You don't need to provide the code itself, but where did you start?) Document this step briefly.</p>
+				<p>When I was browsing through the Generative Design examples looking for inspiration for this project, the following two examples stood out to me.</p>
+				<p><a href="http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_0_03">Example 1</a></p>
+				<p><a href="http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_2_3_01">Example 2</a></p>
+				I liked these images because they immediately reminded me of the patterns in sliced agate stones, which I think are really pretty. I decided that for my project I wanted to try to use sliced agate stone as my inspiration. I then went searching for some images of agate patterns and colors, which I have included below.
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Agate4_hg.jpg/1024px-Agate4_hg.jpg" width="300" height="300" alt="Agate - Orange" />
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Agate_7_%2832755748235%29.jpg/800px-Agate_7_%2832755748235%29.jpg" width="300" height="300" alt="Agate - Green" /> 
+				<p></p>
+				<p></p>
+				<p></p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Integrate</h2>
-				<p>After learning from existing techniques and strategies, we can build upon that foundation by combining elements from different sources. This might involve combining elements from different programming languages, using libraries or frameworks in new ways, or bringing together techniques from different fields or disciplines. By integrating and combining elements from different sources, we can create something new and unique.</p>
-				<p>How did you extend the code or combine with another technique to make something new? Document this step.</p>
+				<p>Since one of the examples I was working from included shapes I liked, and the other included a way of arranging them that I liked, I began by trying to find a way to combine those two concepts.</p>
+				<p>I decided to try modifying the example with the shape that I liked. First, I unlinked the center point of the shape from the mouse, and made it so it was centered in the middle of the page.</p>
+				<p>Then, I started testing ways to make it get smaller with each addition. My first attempt was to modify the range of the amount added to the x and y calculations for the points, but that didn’t work—it just started moving the shape downward.</p>
+				<p>I then tried adding a multiplier to reduce the step size with each iteration, but that didn’t work either, though it did look cool!</p>
+				<p>Finally, I figured out how to do it, by checking to see which side of the center each point is on.</p>
+				<p>Unfortunately, it seemed to have some trouble as points approach the x and y axis. After some modifications to a few of the variables, I finally ended up with a result I was happy with.I decided to add back in the option to click to create another shape, since I didn’t end up including the interactivity for the changing sizes. Plus, I thought it would turn out interestingly in the next step if the user can create more than one of the agate stones.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Innovate</h2>
-				<p>Finally, we can introduce new or original ideas to our coding process by thinking creatively and pushing the boundaries. This might involve developing entirely new techniques or approaches, or using existing techniques in new and creative ways. By innovating and introducing new ideas, we can create art that is truly groundbreaking.</p>
-				<p>How did you use the code as a jumping off point to create something truly unique and novel? Document this step thoroughly.</p>
+				<p>The shapes were looking good at this point, but they didn’t have color yet. First, I added random colors. Unfortunately, those looked more like strange candies than like agate stones. So I had to limit the color palettes.</p>
+				<p>I tried a green, and then an orange-red. I liked the orange-red, but wanted to get more creative. I ended up modifying the orange-red one to feel a little more natural, and added a green and blue option. The colors are randomized per stone. It still looked a little off to me though.</p>
+				<p>I removed the strokes, and I think the result looks much better. I changed the background color to black to make the colors stand out more. At this point, I’m happy with the results. I feel like the shapes do look like agate stones, and the finished results feel very different from the examples I started with.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
 				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment. Here's where you can put your reflections.</p>
 				<ul>
-					<li>What part of the project you contributed</li>
-					<li>A reflection on your work and the work of the team</li>
-					<li>Brief highs and lows</li>
+					<li>I worked on this project by myself, so I contributed everything that is not part of the reference I used at the beginning (I left comments to indicate this in my code file.)</li>
+					<li>I’m really happy with how it turned out! I know it’s not exactly groundbreaking or anything, but I don’t think art always has to be something super impressive and groundbreaking. I think the shapes and colors are pretty, and I’m really proud of how the color randomization turned out! I spent a lot of time figuring out the right values to make sure the range of colors that were generated looked good together and reasonably conveyed the concept of an agate stone.</li>
+					<li>My high for the project was working on the colors. I thought that was really fun, and I’m really happy with how it turned out. My low for the project is that I kept having weird formatting issues when working on the webpage.</li>
 				</ul>
 			<h2>Results</h2>
 			</div>

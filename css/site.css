@@ -4,6 +4,9 @@
   font-family: 'Courier New', Courier, monospace;
   color: #d2b964;
   border: solid 1px rgb(16, 0, 136);
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .minor-section {
@@ -11,4 +14,7 @@
   border: solid 1px #c9a01b;
   background-color: #d2b964;
   color: rgb(16, 0, 136);
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }

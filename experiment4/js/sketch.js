@@ -1,67 +1,68 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
+// sketch.js - Sound Painting
+// Author: Adrian Bruce
+// Date: 2/5/2024
+//sources/references used: https://p5js.org/examples/sound-mic-threshold.html, http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_1_1_01
 
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
+'use strict'
 
-// Globals
-let myInstance;
-let canvasContainer;
+let audInput;
+let analyzer;
+let gridX = 0;
+let gridY = 0;
+let ready = false;
+let lastVolume=0;
 
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
+function setup() {//from ref with modifications
+    let cnv = createCanvas(windowWidth, windowHeight);
+    cnv.mousePressed(userStartAudio());
+  background(255);
+  noStroke();
+  colorMode(HSB);
+  // Create an Audio audInput
+  audInput = new p5.AudioIn();
+  
+  audInput.start();
 }
 
-// setup() function is called once when the program starts
-function setup() {
-    // place our canvas, making it fit our container
-    canvasContainer = $("#canvas-container");
-    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-    canvas.parent("canvas-container");
-    // resize canvas is the page is resized
-    $(window).resize(function() {
-        console.log("Resizing...");
-        resizeCanvas(canvasContainer.width(), canvasContainer.height());
-    });
-    // create an instance of the class
-    myInstance = new MyClass(VALUE1, VALUE2);
-
-    var centerHorz = windowWidth / 2;
-    var centerVert = windowHeight / 2;
-}
-
-// draw() function is called repeatedly, it's the main animation loop
 function draw() {
-    background(220);    
-    // call a method on the instance
-    myInstance.myMethod();
+  // Get the overall volume (between 0 and 1.0)
+  let loudness = audInput.getLevel();
 
-    // Put drawings here
-    var centerHorz = canvasContainer.width() / 2 - 125;
-    var centerVert = canvasContainer.height() / 2 - 125;
-    fill(234, 31, 81);
-    noStroke();
-    rect(centerHorz, centerVert, 250, 250);
-    fill(255);
-    textStyle(BOLD);
-    textSize(140);
-    text("p5*", centerHorz + 10, centerVert + 200);
-}
+  // If the volume > 0.1,  a rect is drawn at a random location.
+  // The louder the volume, the larger the rectangle.
+  let minnoise = 0.1;
+  let stepX = 50;
+  let stepY = 50;
+  //below section is mine, with a few lines that were modified from the reference material
+  if (loudness > minnoise && !ready){
+    lastVolume= loudness*100;
+    ready = true;
+  }else if (loudness > minnoise && ready) {
+    stepX=10*loudness;
+    stepY=10;
+    fill(loudness*360, lastVolume, 100);
+    circle(gridX, gridY, 10+(10*stepX-lastVolume));
+    gridX+=stepX;
+    if(gridX>=width){
+      gridX=0;
+      gridY+=stepY;
+      ready = false;
+    }
+    
+  }else if(loudness<minnoise){
+    
+  }
+//below section is from the example
+  // Graph the overall potential volume, w/ a line at the threshold
+  let y = map(loudness, 0, 1, height, 0);
+  let ythreshold = map(minnoise, 0, 1, height, 0);
 
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+  noStroke();
+  fill(175);
+  rect(0, 0, 20, height);
+  // Then draw a rectangle on the graph, sized according to volume
+  fill(0);
+  rect(0, y, 20, y);
+  line(0, ythreshold, 19, ythreshold);
 }

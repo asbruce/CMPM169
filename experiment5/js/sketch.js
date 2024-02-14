@@ -1,67 +1,60 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// sketch.js - Orange
+// Author: Adrian Bruce
+// Date: 2/13/2024
+//sources/references used: https://p5js.org/examples/3d-orbit-control.html 
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
-
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
-
-// Globals
-let myInstance;
-let canvasContainer;
-
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
+let peel;
+let stem;
+function preload(){
+peel=loadImage('https://cdn.pixabay.com/photo/2017/07/20/19/51/citrus-fruit-skin-2523487_640.jpg') //not my image
+stem=loadImage('https://images.unsplash.com/photo-1651949468474-283980f5e8b2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); //not my image
 }
-
-// setup() function is called once when the program starts
 function setup() {
-    // place our canvas, making it fit our container
-    canvasContainer = $("#canvas-container");
-    let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-    canvas.parent("canvas-container");
-    // resize canvas is the page is resized
-    $(window).resize(function() {
-        console.log("Resizing...");
-        resizeCanvas(canvasContainer.width(), canvasContainer.height());
-    });
-    // create an instance of the class
-    myInstance = new MyClass(VALUE1, VALUE2);
-
-    var centerHorz = windowWidth / 2;
-    var centerVert = windowHeight / 2;
+  createCanvas(710, 400, WEBGL);
 }
-
-// draw() function is called repeatedly, it's the main animation loop
+var peeled = false;
 function draw() {
-    background(220);    
-    // call a method on the instance
-    myInstance.myMethod();
-
-    // Put drawings here
-    var centerHorz = canvasContainer.width() / 2 - 125;
-    var centerVert = canvasContainer.height() / 2 - 125;
-    fill(234, 31, 81);
-    noStroke();
-    rect(centerHorz, centerVert, 250, 250);
-    fill(255);
-    textStyle(BOLD);
-    textSize(140);
-    text("p5*", centerHorz + 10, centerVert + 200);
+    //below section from ref
+  background(250);
+  let radius = width * 1.5;
+  orbitControl();
+  ambientLight(255)
+  directionalLight(255, 255, 255, -100, 10, -100);
+  directionalLight(255, 255, 255, 0, 10, 0);
+  normalMaterial();
+  translate(0, 0, -600);
+  for (let i = 0; i <= 12; i++) {
+    for (let j = 0; j <= 12; j++) {
+      push();
+      let a = (j / 12) * PI;
+      let b = (i / 12) * PI;
+      translate(
+        sin(2 * a) * radius * sin(b)/4,
+        (cos(b) * radius) / 8,
+        cos(2 * a) * radius * sin(b)/4
+      ); //above section from ref
+      //below section mine
+      if (j % 1 === 0) {
+       fill(255, 160, 50)
+        ellipsoid(100-abs(cos(b)*radius)/32, 150+abs(cos(b)*radius)/32, 100-abs(cos(b)*radius)/32);
+      }
+      pop();//from ref
+    }
+  }//below section mine
+  translate(0, 0, 0);
+  fill(250, 240, 240)
+  ellipsoid(330, 300, 330)
+  texture(peel);
+  if(peeled == false){
+    ellipsoid (400, 350, 400, 12, 12)
+    translate(0, -350, 0);
+    texture(stem);
+    cylinder(20, 70);
+    cylinder(40, 10);
+  }
+  
 }
-
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+function keyPressed(){
+   if (key == '1') peeled = true;
+  if (key== '2') peeled = false;
 }
